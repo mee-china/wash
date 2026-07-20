@@ -12,15 +12,15 @@
     "pages/city-select/city-select"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#FFFAF5",
+    "navigationBarBackgroundColor": "#F7FAF9",
     "navigationBarTitleText": "我想洗头",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#FFFAF5",
+    "backgroundColor": "#F7FAF9",
     "backgroundTextStyle": "dark"
   },
   "tabBar": {
     "color": "#A89484",
-    "selectedColor": "#E8835A",
+    "selectedColor": "#6EC6B8",
     "backgroundColor": "#FFFFFF",
     "borderStyle": "white",
     "list": [

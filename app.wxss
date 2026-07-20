@@ -1,39 +1,40 @@
 /* ==========================================
    「我想洗头」微信小程序 - 全局样式
-   暖色系 · 关怀与体面
+   小清新 · 薄荷绿风格
    ========================================== */
 
 /* --- CSS Variables (WXSS Custom Properties) --- */
 page {
-  /* 暖色主色调 */
-  --color-primary: #E8835A;
-  --color-primary-dark: #D16B4A;
-  --color-primary-light: #F5A883;
-  --color-primary-bg: #FDF0E8;
+  /* 小清新主色调：薄荷绿 */
+  --color-primary: #6EC6B8;
+  --color-primary-dark: #52B0A2;
+  --color-primary-light: #A8E0D6;
+  --color-primary-bg: #EEF7F5;
 
   /* 辅助色 */
-  --color-secondary: #F5E0D0;
-  --color-accent: #8B6B5A;
+  --color-secondary: #D8E8E5;
+  --color-accent: #F0B098;
+  --color-accent-dark: #E09880;
 
   /* 功能色 */
   --color-success: #7FB069;
   --color-warning: #E8A838;
   --color-error: #D4735E;
 
-  /* 背景色 */
-  --color-bg: #FFFAF5;
+  /* 背景色 - 偏冷白 */
+  --color-bg: #F7FAF9;
   --color-card: #FFFFFF;
-  --color-overlay: rgba(45, 31, 20, 0.5);
+  --color-overlay: rgba(45, 52, 54, 0.5);
 
-  /* 文字色 */
-  --color-text: #2D1F14;
-  --color-text-secondary: #6B5A4E;
-  --color-text-muted: #A89484;
-  --color-text-placeholder: #C4B4A4;
+  /* 文字色 - 冷灰调 */
+  --color-text: #2D3436;
+  --color-text-secondary: #8E9EA5;
+  --color-text-muted: #B0BEC5;
+  --color-text-placeholder: #CFD8DC;
 
   /* 描边与分割 */
-  --color-border: #EDE0D4;
-  --color-border-light: #F5EDE5;
+  --color-border: #E6EDF0;
+  --color-border-light: #F0F4F5;
 
   /* 尺寸 */
   --page-padding: 32rpx;
@@ -51,9 +52,9 @@ page {
   --font-size-tag: 20rpx;
 
   /* 阴影 */
-  --shadow-card: 0 4rpx 24rpx rgba(45, 31, 20, 0.06);
-  --shadow-card-hover: 0 8rpx 32rpx rgba(45, 31, 20, 0.1);
-  --shadow-btn: 0 4rpx 16rpx rgba(232, 131, 90, 0.3);
+  --shadow-card: 0 4rpx 24rpx rgba(45, 52, 54, 0.05);
+  --shadow-card-hover: 0 8rpx 32rpx rgba(45, 52, 54, 0.08);
+  --shadow-btn: 0 4rpx 16rpx rgba(110, 198, 184, 0.35);
 
   background-color: var(--color-bg);
   color: var(--color-text);
@@ -177,8 +178,8 @@ image {
 }
 
 .tag--secondary {
-  background: #F5EDE5;
-  color: var(--color-accent);
+  background: #F0F4F5;
+  color: var(--color-text-secondary);
 }
 
 .tag--success {
@@ -238,7 +239,7 @@ image {
 }
 
 .badge--done {
-  background: #F5EDE5;
+  background: #F0F4F5;
   color: var(--color-text-muted);
 }
 
@@ -249,7 +250,7 @@ image {
 
 /* --- Loading Skeleton --- */
 .skeleton {
-  background: linear-gradient(90deg, #F5EDE5 25%, #FDF0E8 50%, #F5EDE5 75%);
+  background: linear-gradient(90deg, #E6EDF0 25%, #F0F4F5 50%, #E6EDF0 75%);
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s ease-in-out infinite;
   border-radius: 8rpx;

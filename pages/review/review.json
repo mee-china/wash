@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "服务评价",
-  "navigationBarBackgroundColor": "#FFFAF5",
+  "navigationBarBackgroundColor": "#F7FAF9",
   "navigationBarTextStyle": "black",
   "usingComponents": {
     "rating-stars": "/components/rating-stars/rating-stars"

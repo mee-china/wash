@@ -118,7 +118,7 @@
 .banner-item {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #E8835A 0%, #D16B4A 50%, #C07A5A 100%);
+  background: linear-gradient(135deg, #6EC6B8 0%, #52B0A2 50%, #48A090 100%);
   border-radius: var(--card-radius);
   padding: 40rpx 48rpx;
   position: relative;
@@ -140,11 +140,11 @@
 }
 
 .banner-item:nth-child(2) {
-  background: linear-gradient(135deg, #E8A838 0%, #D49430 50%, #C08430 100%);
+  background: linear-gradient(135deg, #A8E0D6 0%, #7EC8BA 50%, #6EC6B8 100%);
 }
 
 .banner-item:nth-child(3) {
-  background: linear-gradient(135deg, #7FB069 0%, #6D9A58 50%, #5C8548 100%);
+  background: linear-gradient(135deg, #F0B098 0%, #E8A088 50%, #E09880 100%);
 }
 
 .banner-tag {
@@ -176,7 +176,8 @@
 .banner-price {
   font-size: 56rpx;
   font-weight: 800;
-  color: #FFD4A8;
+  color: #FFFFFF;
+  opacity: 0.9;
 }
 
 .banner-subtitle {
@@ -205,7 +206,7 @@
 .banner-dot.active {
   width: 40rpx;
   border-radius: 6rpx;
-  background: #FFD4A8;
+  background: rgba(255, 255, 255, 0.8);
 }
 
 /* ===== 通用 Section ===== */
@@ -266,8 +267,8 @@
   font-size: 36rpx;
 }
 
-.service-icon--primary { background: #FDF0E8; }
-.service-icon--accent { background: #F5EDE5; }
+.service-icon--primary { background: #EEF7F5; }
+.service-icon--accent { background: #FCE8E0; }
 .service-icon--success { background: #E8F5E0; }
 .service-icon--warning { background: #FFF3E0; }
 
@@ -304,7 +305,7 @@
   align-items: center;
   justify-content: center;
   gap: 12rpx;
-  box-shadow: 0 8rpx 32rpx rgba(232, 131, 90, 0.35);
+  box-shadow: 0 8rpx 32rpx rgba(110, 198, 184, 0.35);
   z-index: 100;
 }
 

@@ -54,8 +54,8 @@
 }
 
 .level--S { background: var(--color-primary); }
-.level--A { background: #8B6B5A; }
-.level--B { background: #A89484; }
+.level--A { background: #F0B098; }
+.level--B { background: #B0BEC5; }
 
 /* 中间信息 */
 .card-center {

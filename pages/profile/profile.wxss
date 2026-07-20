@@ -17,7 +17,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, var(--color-primary) 0%, #D16B4A 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   border-radius: 0 0 48rpx 48rpx;
 }
 
@@ -138,8 +138,8 @@
   font-size: 34rpx;
 }
 
-.quick-icon--primary { background: #FDF0E8; }
-.quick-icon--accent { background: #F5EDE5; }
+.quick-icon--primary { background: #EEF7F5; }
+.quick-icon--accent { background: #FCE8E0; }
 .quick-icon--success { background: #E8F5E0; }
 .quick-icon--warning { background: #FFF3E0; }
 
@@ -209,7 +209,7 @@
 }
 
 .card-item--inactive {
-  background: linear-gradient(135deg, #A89484, #8B6B5A);
+  background: linear-gradient(135deg, #B0BEC5, #8E9EA5);
   opacity: 0.6;
 }
 

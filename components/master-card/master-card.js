@@ -12,7 +12,7 @@ Component({
   },
 
   data: {
-    avatarColors: ['#E8835A', '#8B6B5A', '#7FB069', '#C07A5A']
+    avatarColors: ['#6EC6B8', '#F0B098', '#7FB069', '#A8E0D6']
   },
 
   methods: {

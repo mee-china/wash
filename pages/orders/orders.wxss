@@ -154,10 +154,10 @@
 
 /* ===== CSS 变量 - 师傅头像颜色 ===== */
 page {
-  --color-primary: #E8835A;
-  --color-primary-dark: #D16B4A;
-  --color-accent: #8B6B5A;
-  --color-accent-dark: #7A5C4A;
+  --color-primary: #6EC6B8;
+  --color-primary-dark: #52B0A2;
+  --color-accent: #F0B098;
+  --color-accent-dark: #E09880;
   --color-success: #7FB069;
   --color-success-dark: #6D9A58;
 }
