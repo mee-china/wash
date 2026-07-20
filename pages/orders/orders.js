@@ -32,7 +32,7 @@ Page({
 
   loadOrders(callback) {
     const app = getApp();
-    const mock = app.getMockData('mockData');
+    const mock = app.getMockData();
 
     setTimeout(() => {
       const orders = mock.orders;

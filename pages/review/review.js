@@ -20,7 +20,7 @@ Page({
 
     if (orderId) {
       const app = getApp();
-      const mock = app.getMockData('mockData');
+      const mock = app.getMockData();
       const order = mock.orders.find(o => o.id === parseInt(orderId));
       if (order) {
         this.setData({ order });

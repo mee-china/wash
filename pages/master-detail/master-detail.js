@@ -17,12 +17,11 @@ Page({
 
   loadMasterDetail(id) {
     const app = getApp();
-    const mock = app.getMockData('mockData');
+    const mock = app.getMockData();
     const master = mock.masters.find(m => m.id === id);
 
     if (master) {
-      const app = getApp();
-      const services = app.getMockData('mockData').services;
+      const services = mock.services;
       this.setData({
         master,
         services,

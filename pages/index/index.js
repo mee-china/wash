@@ -45,7 +45,7 @@ Page({
 
   loadData(callback) {
     const app = getApp();
-    const mock = app.getMockData('mockData');
+    const mock = app.getMockData();
 
     // 模拟网络延迟
     setTimeout(() => {

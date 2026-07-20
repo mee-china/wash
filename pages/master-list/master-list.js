@@ -32,7 +32,7 @@ Page({
     }
 
     const app = getApp();
-    const mock = app.getMockData('mockData');
+    const mock = app.getMockData();
     let masters = [...mock.masters];
 
     // 如果有服务筛选

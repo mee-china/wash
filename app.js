@@ -110,9 +110,12 @@ App({
   },
 
   onLaunch() {
-    // 获取系统信息
-    const sysInfo = wx.getSystemInfoSync();
-    this.globalData.systemInfo = sysInfo;
+    // 获取系统信息（兼容新旧API）
+    try {
+      this.globalData.systemInfo = wx.getSystemSetting();
+    } catch (e) {
+      this.globalData.systemInfo = {};
+    }
 
     // 静默登录
     this.login();
@@ -151,7 +154,7 @@ App({
   },
 
   // 获取mock数据
-  getMockData(key) {
-    return this.globalData.mockData[key];
+  getMockData() {
+    return this.globalData.mockData;
   }
 });

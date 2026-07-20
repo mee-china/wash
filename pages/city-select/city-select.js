@@ -12,7 +12,7 @@ Page({
 
   onLoad() {
     const app = getApp();
-    const mock = app.getMockData('mockData');
+    const mock = app.getMockData();
     const cities = mock.cities;
 
     // 按字母分组

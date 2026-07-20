@@ -32,7 +32,7 @@ Page({
   onLoad(options) {
     const { masterId, date, slot } = options;
     const app = getApp();
-    const mock = app.getMockData('mockData');
+    const mock = app.getMockData();
     const master = mock.masters.find(m => m.id === parseInt(masterId));
 
     // 默认使用用户手机号

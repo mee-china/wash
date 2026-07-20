@@ -23,7 +23,7 @@ Page({
 
   loadOrder(id) {
     const app = getApp();
-    const mock = app.getMockData('mockData');
+    const mock = app.getMockData();
     const order = mock.orders.find(o => o.id === id);
     if (order) {
       this.setData({ order, isLoading: false });
