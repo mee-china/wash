@@ -1,0 +1,397 @@
+/* pages/index/index.wxss */
+.page-index {
+  padding-bottom: 180rpx; /* FAB + TabBar 空间 */
+  min-height: 100vh;
+}
+
+/* ===== 定位栏 ===== */
+.location-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx var(--page-padding) 16rpx;
+}
+
+.location-left {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.city-name {
+  font-size: var(--font-size-h3);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.arrow {
+  font-size: 20rpx;
+  color: var(--color-text-muted);
+}
+
+.status-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: var(--color-text-muted);
+  margin-left: 8rpx;
+}
+
+.status-dot.online {
+  background: var(--color-success);
+}
+
+.status-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.location-right {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  background: var(--color-primary-bg);
+  padding: 8rpx 20rpx;
+  border-radius: 24rpx;
+  font-size: var(--font-size-xs);
+  color: var(--color-accent);
+}
+
+.online-dot {
+  width: 12rpx;
+  height: 12rpx;
+  background: var(--color-success);
+  border-radius: 50%;
+}
+
+/* ===== 城市未开通 ===== */
+.city-unavailable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx var(--page-padding) 60rpx;
+}
+
+.unavailable-icon {
+  font-size: 80rpx;
+  margin-bottom: 24rpx;
+}
+
+.unavailable-title {
+  font-size: var(--font-size-h2);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 12rpx;
+}
+
+.unavailable-desc {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  margin-bottom: 40rpx;
+}
+
+.btn-subscribe {
+  width: 320rpx;
+  height: 88rpx;
+  background: var(--color-primary);
+  border-radius: 44rpx;
+  color: #fff;
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-subscribe:active {
+  background: var(--color-primary-dark);
+}
+
+/* ===== Banner ===== */
+.banner-swiper {
+  height: 320rpx;
+  margin: 0 var(--page-padding);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
+
+.banner-item {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #E8835A 0%, #D16B4A 50%, #C07A5A 100%);
+  border-radius: var(--card-radius);
+  padding: 40rpx 48rpx;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.banner-item::after {
+  content: '';
+  position: absolute;
+  right: -40rpx;
+  top: -40rpx;
+  width: 240rpx;
+  height: 240rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 50%;
+}
+
+.banner-item:nth-child(2) {
+  background: linear-gradient(135deg, #E8A838 0%, #D49430 50%, #C08430 100%);
+}
+
+.banner-item:nth-child(3) {
+  background: linear-gradient(135deg, #7FB069 0%, #6D9A58 50%, #5C8548 100%);
+}
+
+.banner-tag {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: var(--font-size-tag);
+  padding: 4rpx 16rpx;
+  border-radius: var(--tag-radius);
+  margin-bottom: 16rpx;
+  align-self: flex-start;
+  backdrop-filter: blur(4px);
+}
+
+.banner-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.banner-title {
+  font-size: var(--font-size-h1);
+  font-weight: 700;
+  color: #fff;
+}
+
+.banner-price {
+  font-size: 56rpx;
+  font-weight: 800;
+  color: #FFD4A8;
+}
+
+.banner-subtitle {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 12rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.banner-indicator {
+  position: absolute;
+  bottom: 24rpx;
+  left: 48rpx;
+  display: flex;
+  gap: 10rpx;
+}
+
+.banner-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.banner-dot.active {
+  width: 40rpx;
+  border-radius: 6rpx;
+  background: #FFD4A8;
+}
+
+/* ===== 通用 Section ===== */
+.section {
+  margin-top: 20rpx;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx var(--page-padding) 16rpx;
+}
+
+.section-title {
+  font-size: var(--font-size-h3);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.section-more {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.section-more:active {
+  color: var(--color-primary);
+}
+
+/* ===== 服务项目 ===== */
+.service-grid {
+  display: flex;
+  gap: 16rpx;
+  padding: 0 var(--page-padding);
+}
+
+.service-item {
+  flex: 1;
+  background: var(--color-card);
+  border-radius: var(--card-radius);
+  padding: 24rpx 12rpx;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+}
+
+.service-item:active {
+  transform: scale(0.96);
+}
+
+.service-icon {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 20rpx;
+  margin: 0 auto 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+}
+
+.service-icon--primary { background: #FDF0E8; }
+.service-icon--accent { background: #F5EDE5; }
+.service-icon--success { background: #E8F5E0; }
+.service-icon--warning { background: #FFF3E0; }
+
+.service-name {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 4rpx;
+}
+
+.service-desc {
+  display: block;
+  font-size: var(--font-size-tag);
+  color: var(--color-text-muted);
+  line-height: 1.3;
+}
+
+/* ===== 推荐师傅 ===== */
+.master-list {
+  padding: 0 var(--page-padding);
+}
+
+/* ===== 快捷预约 FAB ===== */
+.fab {
+  position: fixed;
+  bottom: 140rpx;
+  left: var(--page-padding);
+  right: var(--page-padding);
+  height: 88rpx;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  border-radius: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  box-shadow: 0 8rpx 32rpx rgba(232, 131, 90, 0.35);
+  z-index: 100;
+}
+
+.fab:active {
+  opacity: 0.85;
+}
+
+.fab-icon {
+  font-size: 32rpx;
+}
+
+.fab-text {
+  color: #fff;
+  font-size: var(--font-size-body);
+  font-weight: 600;
+}
+
+/* ===== 错误态 ===== */
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx var(--page-padding);
+}
+
+.error-icon {
+  font-size: 80rpx;
+  margin-bottom: 24rpx;
+}
+
+.error-text {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  margin-bottom: 32rpx;
+}
+
+.btn-retry {
+  width: 240rpx;
+  height: 72rpx;
+  border: 2rpx solid var(--color-primary);
+  border-radius: 36rpx;
+  color: var(--color-primary);
+  font-size: var(--font-size-body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== 骨架屏 ===== */
+.skeleton-section {
+  padding: var(--page-padding);
+}
+
+.skeleton-location {
+  width: 200rpx;
+  height: 40rpx;
+  margin-bottom: 24rpx;
+}
+
+.skeleton-banner {
+  width: 100%;
+  height: 320rpx;
+  border-radius: var(--card-radius);
+  margin-bottom: 40rpx;
+}
+
+.skeleton-services {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 40rpx;
+}
+
+.skeleton-item {
+  flex: 1;
+  height: 140rpx;
+  border-radius: var(--card-radius);
+}
+
+.skeleton-section-title {
+  width: 160rpx;
+  height: 36rpx;
+  margin-bottom: 20rpx;
+}
+
+.skeleton-card {
+  width: 100%;
+  height: 200rpx;
+  border-radius: var(--card-radius);
+  margin-bottom: 20rpx;
+}

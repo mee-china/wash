@@ -1,0 +1,107 @@
+<!-- pages/orders/orders.wxml -->
+<view class="page-orders">
+
+  <!-- Tab 切换栏 -->
+  <view class="order-tabs">
+    <view
+      class="order-tab {{activeTab === item.key ? 'active' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="key"
+      data-key="{{item.key}}"
+      bindtap="onTabSwitch"
+    >
+      <text>{{item.label}}</text>
+      <text class="tab-badge" wx:if="{{item.count > 0}}">{{item.count}}</text>
+    </view>
+  </view>
+
+  <!-- 加载态 -->
+  <block wx:if="{{isLoading}}">
+    <view class="skeleton-list">
+      <view class="skeleton skeleton-order-card"></view>
+      <view class="skeleton skeleton-order-card"></view>
+    </view>
+  </block>
+
+  <!-- 空状态 -->
+  <empty-state
+    wx:elif="{{filteredOrders.length === 0}}"
+    icon="📋"
+    title="暂无订单"
+    desc="快去首页预约洗头服务吧"
+    actionText="去首页看看"
+    bindaction="onTapOrder"
+  />
+
+  <!-- 订单列表 -->
+  <scroll-view
+    wx:else
+    class="order-scroll"
+    scroll-y="{{true}}"
+    enhanced="{{true}}"
+    show-scrollbar="{{false}}"
+    refresher-enabled="{{true}}"
+    refresher-triggered="{{isRefreshing}}"
+  >
+    <view class="order-list">
+      <view
+        class="order-card-item"
+        wx:for="{{filteredOrders}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="onTapOrder"
+      >
+        <!-- 顶部：师傅信息 + 状态 -->
+        <view class="order-header">
+          <view class="order-master">
+            <view class="order-avatar" style="background: linear-gradient(135deg, var(--color-{{item.masterColor}}), var(--color-{{item.masterColor}}-dark));">
+              <text>{{item.masterAvatar}}</text>
+            </view>
+            <text class="order-master-name">{{item.masterName}}</text>
+          </view>
+          <view class="badge badge--{{item.statusType}}">{{item.statusText}}</view>
+        </view>
+
+        <!-- 详情 -->
+        <view class="order-body">
+          <view class="order-info-row">
+            <text class="info-label">时间</text>
+            <text class="info-value">{{item.time}}</text>
+          </view>
+          <view class="order-info-row">
+            <text class="info-label">地址</text>
+            <text class="info-value info-address">{{item.address}}</text>
+          </view>
+          <view class="order-info-row">
+            <text class="info-label">服务</text>
+            <text class="info-value">{{item.serviceName}}</text>
+          </view>
+          <view class="order-info-row order-price-row" wx:if="{{item.status === 4 || item.status === 5}}">
+            <text class="info-label">金额</text>
+            <text class="price price--large">¥{{item.price}}</text>
+          </view>
+        </view>
+
+        <!-- 操作按钮 -->
+        <view class="order-actions">
+          <block wx:if="{{item.statusType === 'waiting'}}">
+            <button class="btn-text" bindtap="onTapCancel" data-id="{{item.id}}" catchtap>取消订单</button>
+          </block>
+          <block wx:elif="{{item.statusType === 'ontheway'}}">
+            <button class="btn-outline" bindtap="onTapContact" data-id="{{item.id}}" catchtap>联系师傅</button>
+            <button class="btn-outline btn-outline--primary" bindtap="onTapViewLocation" data-id="{{item.id}}" catchtap>查看位置</button>
+          </block>
+          <block wx:elif="{{item.statusType === 'serving'}}">
+            <button class="btn-outline" bindtap="onTapContact" data-id="{{item.id}}" catchtap>联系师傅</button>
+          </block>
+          <block wx:elif="{{item.statusType === 'done'}}">
+            <button class="btn-text" bindtap="onTapReorder" data-id="{{item.id}}" catchtap>再次预约</button>
+            <button class="btn-outline btn-outline--primary" wx:if="{{!item.reviewed}}" bindtap="onTapReview" data-id="{{item.id}}" catchtap>去评价</button>
+            <button class="btn-text" wx:else bindtap="onTapReview" data-id="{{item.id}}" catchtap>查看评价</button>
+          </block>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+</view>

@@ -1,0 +1,125 @@
+<!-- pages/order-detail/order-detail.wxml -->
+<view class="page-order-detail">
+
+  <block wx:if="{{isLoading}}">
+    <view class="skeleton-block">
+      <view class="skeleton skeleton-detail-card"></view>
+      <view class="skeleton skeleton-detail-card"></view>
+    </view>
+  </block>
+
+  <block wx:else>
+
+    <!-- 状态追踪条 -->
+    <view class="track-section">
+      <view class="track-steps">
+        <view class="track-step {{item.done ? 'done' : ''}} {{item.active ? 'active' : ''}}" wx:for="{{getStatusSteps(order.status)}}" wx:key="index">
+          <view class="track-dot">
+            <text wx:if="{{item.done && !item.active}}">✓</text>
+            <text wx:elif="{{item.active}}">●</text>
+            <text wx:else>○</text>
+          </view>
+          <text class="track-label">{{item.label}}</text>
+        </view>
+      </view>
+
+      <!-- 等待接单倒计时 -->
+      <view class="track-waiting" wx:if="{{order.status === 0}}">
+        <text class="waiting-text">等待师傅接单中...</text>
+        <view class="waiting-timer">15:00</view>
+      </view>
+
+      <!-- 师傅位置 -->
+      <view class="track-location" wx:if="{{order.status === 2 || order.status === 3}}">
+        <view class="location-map">
+          <view class="map-placeholder">
+            <text>🗺️</text>
+            <text class="map-text">师傅实时位置</text>
+          </view>
+        </view>
+        <view class="location-info">
+          <text class="location-eta">预计 {{order.etaMinutes || 15}} 分钟后到达</text>
+          <button class="btn-outline" bindtap="onTapViewLocation">查看位置</button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 师傅信息 -->
+    <view class="info-card">
+      <view class="info-card-header">
+        <view class="info-master">
+          <view class="info-avatar" style="background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));">
+            <text>{{order.masterAvatar}}</text>
+          </view>
+          <view class="info-master-detail">
+            <text class="info-master-name">{{order.masterName}}</text>
+            <text class="info-service-name">{{order.serviceName}}</text>
+          </view>
+        </view>
+        <button class="btn-outline" bindtap="onTapContact">联系师傅</button>
+      </view>
+    </view>
+
+    <!-- 订单信息 -->
+    <view class="info-card">
+      <view class="info-row">
+        <text class="info-label">预约时间</text>
+        <text class="info-val">{{order.time}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">服务地址</text>
+        <text class="info-val">{{order.address}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">订单编号</text>
+        <text class="info-val">{{order.id || 'ORD20260720'}}</text>
+      </view>
+      <view class="info-row" wx:if="{{order.status === 4}}">
+        <text class="info-label">支付金额</text>
+        <text class="price price--large">¥{{order.price}}</text>
+      </view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="action-area">
+      <block wx:if="{{order.status === 0}}">
+        <button class="btn-text" bindtap="onTapCancel">取消订单</button>
+      </block>
+      <block wx:elif="{{order.status === 1 || order.status === 2 || order.status === 3}}">
+        <button class="btn-text" bindtap="onTapContact">联系客服</button>
+      </block>
+      <block wx:elif="{{order.status === 4}}">
+        <button class="btn-outline" bindtap="onTapReorder">再次预约</button>
+        <button class="btn-primary" wx:if="{{!order.reviewed}}" bindtap="onTapReview" style="width:auto;padding:0 48rpx;height:72rpx;display:inline-flex;">去评价</button>
+        <button class="btn-outline" wx:else>查看评价</button>
+      </block>
+    </view>
+
+  </block>
+
+  <!-- 取消订单弹窗 -->
+  <view class="cancel-modal {{showCancelModal ? 'show' : ''}}" wx:if="{{showCancelModal}}">
+    <view class="cancel-mask" bindtap="onCloseCancelModal"></view>
+    <view class="cancel-sheet safe-bottom">
+      <view class="cancel-header">
+        <text class="cancel-title">取消订单</text>
+        <text class="cancel-close" bindtap="onCloseCancelModal">✕</text>
+      </view>
+      <text class="cancel-hint">请选择取消原因：</text>
+      <view class="cancel-reasons">
+        <view
+          class="cancel-reason {{cancelReason === item ? 'active' : ''}}"
+          wx:for="{{cancelReasons}}"
+          wx:key="*this"
+          data-reason="{{item}}"
+          bindtap="onSelectCancelReason"
+        >
+          <text>{{item}}</text>
+        </view>
+      </view>
+      <view class="cancel-note">服务开始前30分钟取消可全额退款</view>
+      <button class="btn-primary" bindtap="onConfirmCancel">确认取消</button>
+    </view>
+  </view>
+
+</view>

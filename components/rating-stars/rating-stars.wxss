@@ -1,0 +1,25 @@
+/* components/rating-stars/rating-stars.wxss */
+.stars-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 2rpx;
+  line-height: 1;
+}
+
+.star {
+  color: var(--color-text-muted);
+  transition: transform 0.15s;
+}
+
+.star.full {
+  color: var(--color-primary);
+}
+
+.star.half {
+  color: var(--color-primary);
+  opacity: 0.6;
+}
+
+.star.interactive:active {
+  transform: scale(1.3);
+}

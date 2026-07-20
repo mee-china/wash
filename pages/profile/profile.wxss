@@ -1,0 +1,282 @@
+/* pages/profile/profile.wxss */
+.page-profile {
+  padding-bottom: 40rpx;
+}
+
+/* ===== 用户头部 ===== */
+.profile-header {
+  position: relative;
+  padding: 40rpx var(--page-padding) 60rpx;
+  color: #fff;
+  overflow: hidden;
+}
+
+.header-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #D16B4A 100%);
+  border-radius: 0 0 48rpx 48rpx;
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.avatar-large {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56rpx;
+  border: 4rpx solid rgba(255, 255, 255, 0.3);
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  display: block;
+  font-size: var(--font-size-h2);
+  font-weight: 700;
+  margin-bottom: 4rpx;
+}
+
+.user-phone {
+  display: block;
+  font-size: var(--font-size-sm);
+  opacity: 0.8;
+}
+
+.user-join {
+  display: block;
+  font-size: var(--font-size-xs);
+  opacity: 0.6;
+  margin-top: 4rpx;
+}
+
+/* ===== 省钱 Banner ===== */
+.savings-banner {
+  margin: -32rpx var(--page-padding) 20rpx;
+  background: var(--color-card);
+  border-radius: var(--card-radius);
+  padding: 24rpx 28rpx;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.savings-left {
+  display: flex;
+  align-items: baseline;
+  gap: 12rpx;
+}
+
+.savings-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.savings-amount {
+  font-size: var(--font-size-h1);
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.savings-right {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* ===== 快捷入口 ===== */
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--color-card);
+  margin: 0 var(--page-padding);
+  border-radius: var(--card-radius);
+  padding: 24rpx 8rpx;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 20rpx;
+}
+
+.quick-item {
+  text-align: center;
+  padding: 12rpx 0;
+}
+
+.quick-item:active {
+  transform: scale(0.92);
+}
+
+.quick-icon-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.quick-icon {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 20rpx;
+  margin: 0 auto 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34rpx;
+}
+
+.quick-icon--primary { background: #FDF0E8; }
+.quick-icon--accent { background: #F5EDE5; }
+.quick-icon--success { background: #E8F5E0; }
+.quick-icon--warning { background: #FFF3E0; }
+
+.quick-badge {
+  position: absolute;
+  top: -8rpx;
+  right: -8rpx;
+  background: var(--color-error);
+  color: #fff;
+  font-size: var(--font-size-tag);
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.quick-label {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--color-text);
+}
+
+/* ===== 我的次卡 ===== */
+.card-section {
+  margin: 0 var(--page-padding) 20rpx;
+  background: var(--color-card);
+  border-radius: var(--card-radius);
+  padding: 24rpx 28rpx;
+  box-shadow: var(--shadow-card);
+}
+
+.card-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.card-section-title {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.card-section-more {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.card-row {
+  display: flex;
+  gap: 16rpx;
+}
+
+.card-item {
+  flex: 1;
+  border-radius: var(--card-radius-sm);
+  padding: 20rpx;
+  color: #fff;
+}
+
+.card-item--active {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+}
+
+.card-item--inactive {
+  background: linear-gradient(135deg, #A89484, #8B6B5A);
+  opacity: 0.6;
+}
+
+.card-type {
+  display: block;
+  font-size: var(--font-size-xs);
+  opacity: 0.8;
+  margin-bottom: 8rpx;
+}
+
+.card-count {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 700;
+  margin-bottom: 8rpx;
+}
+
+.card-total {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.card-expiry, .card-buy {
+  display: block;
+  font-size: var(--font-size-tag);
+  opacity: 0.6;
+}
+
+/* ===== 功能列表 ===== */
+.list-section {
+  margin: 0 var(--page-padding);
+  background: var(--color-card);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-card);
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx var(--page-padding);
+  border-bottom: 2rpx solid var(--color-border-light);
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.list-left {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.list-icon {
+  font-size: 32rpx;
+  width: 40rpx;
+  text-align: center;
+}
+
+.list-text {
+  font-size: var(--font-size-body);
+  color: var(--color-text);
+}
+
+.list-arrow {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}

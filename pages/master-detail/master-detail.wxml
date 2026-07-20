@@ -1,0 +1,158 @@
+<!-- pages/master-detail/master-detail.wxml -->
+<view class="page-master-detail">
+
+  <block wx:if="{{isLoading}}">
+    <view class="skeleton-detail">
+      <view class="skeleton skeleton-header"></view>
+      <view class="skeleton skeleton-stats"></view>
+      <view class="skeleton skeleton-section"></view>
+      <view class="skeleton skeleton-section"></view>
+    </view>
+  </block>
+
+  <block wx:else>
+
+    <!-- 师傅头部 -->
+    <view class="master-hero">
+      <view class="master-avatar" style="background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));">
+        <text>{{master.avatar}}</text>
+      </view>
+      <view class="master-hero-info">
+        <view class="hero-name-row">
+          <text class="hero-name">{{master.name}}</text>
+          <view class="hero-level level--{{master.level}}">{{master.level}}级</view>
+          <view class="hero-badge">✓ 已认证</view>
+        </view>
+        <text class="hero-years">{{master.years}}年从业经验</text>
+        <view class="hero-tags">
+          <text class="tag tag--primary" wx:for="{{master.specialties}}" wx:key="*this">{{item}}</text>
+        </view>
+      </view>
+      <view class="favorite-btn {{isFavorited ? 'favorited' : ''}}" bindtap="onToggleFavorite">
+        <text>{{isFavorited ? '❤️' : '🤍'}}</text>
+      </view>
+    </view>
+
+    <!-- 数据统计 -->
+    <view class="stats-bar">
+      <view class="stat-item">
+        <text class="stat-value">{{master.rating}}</text>
+        <text class="stat-label">综合评分</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-value">{{master.orderCount}}</text>
+        <text class="stat-label">服务单数</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-value">{{master.acceptRate}}</text>
+        <text class="stat-label">接单率</text>
+      </view>
+    </view>
+
+    <!-- 评价标签云 -->
+    <view class="section-block">
+      <view class="section-title">用户评价标签</view>
+      <view class="tag-cloud">
+        <view class="cloud-tag" wx:for="{{master.skillTags}}" wx:key="*this">
+          <text>{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 服务项目 -->
+    <view class="section-block">
+      <view class="section-title">服务项目</view>
+      <view class="service-list">
+        <view class="service-item-row" wx:for="{{services}}" wx:key="id">
+          <view class="service-info">
+            <text class="service-item-name">{{item.name}}</text>
+            <text class="service-item-desc">{{item.desc}}</text>
+          </view>
+          <view class="service-item-price">
+            <text class="price price--large">¥{{item.price}}</text>
+            <text class="service-item-duration">/ {{item.duration || '40'}}分钟</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 选择预约时间 -->
+    <view class="section-block">
+      <view class="section-title">选择预约时间</view>
+
+      <!-- 日期选择 -->
+      <scroll-view class="date-scroll" scroll-x="{{true}}" show-scrollbar="{{false}}">
+        <view
+          class="date-pill {{selectedDate === item.date ? 'active' : ''}}"
+          wx:for="{{master.schedule}}"
+          wx:key="date"
+          data-date="{{item.date}}"
+          bindtap="onSelectDate"
+        >
+          <text class="date-label">{{item.date}}</text>
+          <text class="date-slots" wx:if="{{item.slots.length > 0 && selectedDate === item.date}}">{{item.slots.length}} 个时段</text>
+          <text class="date-slots muted" wx:elif="{{item.slots.length === 0}}">已约满</text>
+        </view>
+      </scroll-view>
+
+      <!-- 时段选择 -->
+      <block wx:if="{{allSlots.length > 0}}">
+        <view class="slot-grid">
+          <view
+            class="slot-item {{selectedSlot === slot ? 'active' : ''}}"
+            wx:for="{{allSlots}}"
+            wx:key="*this"
+            data-slot="{{slot}}"
+            bindtap="onSelectSlot"
+          >
+            <text>{{slot}}</text>
+          </view>
+        </view>
+      </block>
+      <view class="no-slots" wx:else>
+        <text>{{selectedDate}}暂无可用时段</text>
+      </view>
+    </view>
+
+    <!-- 评价列表 -->
+    <view class="section-block">
+      <view class="section-title-row">
+        <text class="section-title">用户评价 ({{master.reviewCount}})</text>
+        <text class="section-more" wx:if="{{master.reviews.length > 3}}" bindtap="onViewAllReviews">查看全部 ›</text>
+      </view>
+      <view class="review-list">
+        <view class="review-item" wx:for="{{master.reviews.slice(0, reviewsToShow)}}" wx:key="*this">
+          <view class="review-header">
+            <text class="review-user">{{item.user}}</text>
+            <rating-stars rating="{{item.rating}}" size="20" />
+          </view>
+          <view class="review-tags" wx:if="{{item.tags && item.tags.length > 0}}">
+            <text class="review-tag" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
+          </view>
+          <text class="review-text">{{item.text}}</text>
+          <text class="review-time">{{item.time}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 吸底预约按钮 -->
+    <view class="bottom-bar safe-bottom">
+      <view class="bar-price">
+        <text class="price price--large">¥{{master.price}}</text>
+        <text class="bar-unit">起</text>
+        <text class="bar-original" wx:if="{{master.originalPrice}}">原价 ¥{{master.originalPrice}}</text>
+      </view>
+      <button
+        class="btn-primary {{master.todayFull ? 'btn-primary--disabled' : ''}}"
+        disabled="{{master.todayFull}}"
+        bindtap="onTapBook"
+      >
+        {{master.todayFull ? '今日已约满' : '立即预约'}}
+      </button>
+    </view>
+
+  </block>
+
+</view>

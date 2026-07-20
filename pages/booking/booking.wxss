@@ -1,0 +1,364 @@
+/* pages/booking/booking.wxss */
+.page-booking {
+  padding-bottom: 180rpx;
+}
+
+/* ===== 顶部师傅摘要 ===== */
+.master-brief {
+  background: var(--color-primary-bg);
+  padding: 24rpx var(--page-padding);
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.brief-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.brief-name {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.brief-time {
+  margin-left: auto;
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+/* ===== 表单区块 ===== */
+.form-section {
+  margin: 0 var(--page-padding) 20rpx;
+  background: var(--color-card);
+  border-radius: var(--card-radius);
+  padding: 28rpx;
+  box-shadow: var(--shadow-card);
+}
+
+.form-section-header {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  gap: 4rpx;
+}
+
+.field-required {
+  color: var(--color-error);
+  font-size: var(--font-size-sm);
+}
+
+/* ===== 服务项目选择 ===== */
+.service-select {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.service-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16rpx;
+  border-radius: var(--card-radius-sm);
+  border: 2rpx solid var(--color-border-light);
+}
+
+.service-option.active {
+  border-color: var(--color-primary);
+  background: var(--color-primary-bg);
+}
+
+.service-option-left {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.service-option-icon {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+}
+
+.service-option-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rpx;
+}
+
+.service-option-name {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.service-option-desc {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.service-option-price {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.radio {
+  width: 28rpx;
+  height: 28rpx;
+  border-radius: 50%;
+  border: 2rpx solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.radio-checked {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  border-width: 4rpx;
+  border-color: var(--color-primary);
+  background: #fff;
+  position: relative;
+}
+
+.radio-checked::after {
+  content: '';
+  width: 12rpx;
+  height: 12rpx;
+  background: var(--color-primary);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ===== 时间展示 ===== */
+.time-display {
+  padding: 16rpx;
+  background: var(--color-bg);
+  border-radius: var(--card-radius-sm);
+}
+
+.time-text {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* ===== 地址切换 ===== */
+.address-tabs {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.address-tab {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx;
+  border-radius: var(--card-radius-sm);
+  border: 2rpx solid var(--color-border-light);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.address-tab.active {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: var(--color-primary-bg);
+  font-weight: 600;
+}
+
+/* 表单字段 */
+.form-field {
+  margin-bottom: 16rpx;
+  position: relative;
+}
+
+.field-label {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: 8rpx;
+}
+
+.field-input {
+  width: 100%;
+  height: 80rpx;
+  background: var(--color-bg);
+  border-radius: var(--card-radius-sm);
+  padding: 0 20rpx;
+  font-size: var(--font-size-body);
+  color: var(--color-text);
+  border: 2rpx solid transparent;
+}
+
+.field-error .field-input {
+  border-color: var(--color-error);
+  background: #FFF0EE;
+}
+
+.field-textarea {
+  width: 100%;
+  height: 160rpx;
+  background: var(--color-bg);
+  border-radius: var(--card-radius-sm);
+  padding: 16rpx 20rpx;
+  font-size: var(--font-size-body);
+  color: var(--color-text);
+  resize: none;
+}
+
+.char-count {
+  position: absolute;
+  bottom: 8rpx;
+  right: 12rpx;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.error-msg {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--color-error);
+  margin-top: 4rpx;
+  margin-bottom: 8rpx;
+}
+
+/* 医院建议 */
+.hospital-suggest {
+  background: var(--color-card);
+  border: 2rpx solid var(--color-border);
+  border-radius: var(--card-radius-sm);
+  margin-bottom: 16rpx;
+}
+
+.hospital-item {
+  padding: 20rpx;
+  border-bottom: 2rpx solid var(--color-border-light);
+}
+
+.hospital-item:last-child {
+  border-bottom: none;
+}
+
+.hospital-name {
+  display: block;
+  font-size: var(--font-size-body);
+  color: var(--color-text);
+  margin-bottom: 4rpx;
+}
+
+.hospital-addr {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* ===== 患者类型 ===== */
+.patient-type-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12rpx;
+}
+
+.patient-type {
+  text-align: center;
+  padding: 20rpx 8rpx;
+  border-radius: var(--card-radius-sm);
+  border: 2rpx solid var(--color-border-light);
+}
+
+.patient-type.active {
+  border-color: var(--color-primary);
+  background: var(--color-primary-bg);
+}
+
+.patient-type-icon {
+  display: block;
+  font-size: 36rpx;
+  margin-bottom: 6rpx;
+}
+
+.patient-type-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text);
+}
+
+/* ===== 价格明细 ===== */
+.price-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.price-value {
+  font-size: var(--font-size-body);
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.price-row--discount .price-value {
+  color: var(--color-success);
+}
+
+.price-total {
+  padding-top: 16rpx;
+  border-top: 2rpx solid var(--color-border-light);
+}
+
+.price-total .price-label {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* ===== 提交区域 ===== */
+.submit-area {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-card);
+  padding: 20rpx var(--page-padding);
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.06);
+  z-index: 100;
+}
+
+.submit-info {
+  display: flex;
+  align-items: baseline;
+  gap: 8rpx;
+  flex-shrink: 0;
+}
+
+.submit-price-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}

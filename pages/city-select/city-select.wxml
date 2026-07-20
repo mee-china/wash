@@ -1,0 +1,87 @@
+<!-- pages/city-select/city-select.wxml -->
+<view class="page-city-select">
+
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrap">
+      <text class="search-icon">🔍</text>
+      <input
+        class="search-input"
+        placeholder="搜索城市"
+        value="{{searchKeyword}}"
+        bindinput="onSearchInput"
+        focus="{{true}}"
+      />
+      <text class="search-clear" wx:if="{{searchKeyword}}" bindtap="onClearSearch">✕</text>
+    </view>
+  </view>
+
+  <!-- 搜索模式 -->
+  <block wx:if="{{searchKeyword}}">
+    <view class="search-results">
+      <view
+        class="search-result-item {{item.name === currentCity ? 'current' : ''}} {{!item.available ? 'disabled' : ''}}"
+        wx:for="{{searchResults}}"
+        wx:key="code"
+        data-name="{{item.name}}"
+        bindtap="onSelectCity"
+      >
+        <text class="result-name">{{item.name}}</text>
+        <text class="result-status">
+          {{item.available ? (item.name === currentCity ? '当前城市' : '') : '暂未开通'}}
+        </text>
+      </view>
+      <empty-state
+        wx:if="{{searchResults.length === 0}}"
+        icon="🔍"
+        title="未找到该城市"
+        desc="输入城市名或拼音搜索"
+      />
+    </view>
+  </block>
+
+  <!-- 城市列表 -->
+  <block wx:else>
+    <!-- GPS定位 -->
+    <view class="section-header">定位</view>
+    <view class="city-row gps-row" bindtap="onSelectCity" data-name="{{currentCity}}">
+      <text class="gps-icon">📍</text>
+      <text class="gps-city">{{currentCity}}</text>
+      <text class="gps-badge">当前定位</text>
+    </view>
+
+    <!-- 热门城市 -->
+    <view class="section-header">热门城市</view>
+    <view class="hot-grid">
+      <view
+        class="hot-item {{item === currentCity ? 'current' : ''}}"
+        wx:for="{{hotCities}}"
+        wx:key="*this"
+        data-name="{{item}}"
+        bindtap="onSelectCity"
+      >
+        <text>{{item}}</text>
+      </view>
+    </view>
+
+    <!-- 城市字母分组 -->
+    <view class="city-groups">
+      <view class="city-group" wx:for="{{groupedCities}}" wx:key="index">
+        <view class="group-letter">{{index}}</view>
+        <view class="group-list">
+          <view
+            class="group-item {{item.name === currentCity ? 'current' : ''}} {{!item.available ? 'disabled' : ''}}"
+            wx:for="{{item}}"
+            wx:key="code"
+            data-name="{{item.name}}"
+            bindtap="onSelectCity"
+          >
+            <text>{{item.name}}</text>
+            <text class="item-badge" wx:if="{{!item.available}}">即将开通</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+</view>

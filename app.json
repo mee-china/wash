@@ -1,0 +1,62 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/orders/orders",
+    "pages/profile/profile",
+    "pages/master-list/master-list",
+    "pages/master-detail/master-detail",
+    "pages/booking/booking",
+    "pages/payment/payment",
+    "pages/order-detail/order-detail",
+    "pages/review/review",
+    "pages/city-select/city-select"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#FFFAF5",
+    "navigationBarTitleText": "我想洗头",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FFFAF5",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#A89484",
+    "selectedColor": "#E8835A",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/tab-home.png",
+        "selectedIconPath": "images/tab-home-active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/orders/orders",
+        "iconPath": "images/tab-orders.png",
+        "selectedIconPath": "images/tab-orders-active.png",
+        "text": "订单"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "iconPath": "images/tab-profile.png",
+        "selectedIconPath": "images/tab-profile-active.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "获取您的位置信息用于展示附近的洗头师傅"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "usingComponents": {
+    "master-card": "/components/master-card/master-card",
+    "order-card": "/components/order-card/order-card",
+    "rating-stars": "/components/rating-stars/rating-stars",
+    "empty-state": "/components/empty-state/empty-state"
+  },
+  "sitemapLocation": "sitemap.json"
+}

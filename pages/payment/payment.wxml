@@ -1,0 +1,78 @@
+<!-- pages/payment/payment.wxml -->
+<view class="page-payment">
+
+  <!-- 支付成功遮罩 -->
+  <view class="success-overlay" wx:if="{{paySuccess}}">
+    <view class="success-card">
+      <view class="success-icon">✅</view>
+      <text class="success-title">支付成功</text>
+      <text class="success-desc">正在跳转订单详情...</text>
+    </view>
+  </view>
+
+  <!-- 订单摘要 -->
+  <view class="order-summary">
+    <view class="summary-icon">📋</view>
+    <text class="summary-title">订单提交成功</text>
+    <text class="summary-id">订单编号：{{orderId}}</text>
+  </view>
+
+  <!-- 支付信息 -->
+  <view class="pay-section">
+    <view class="pay-header">
+      <text class="pay-title">支付详情</text>
+    </view>
+    <view class="pay-info-row">
+      <text class="pay-label">服务项目</text>
+      <text class="pay-value">{{serviceName}}</text>
+    </view>
+    <view class="pay-info-row">
+      <text class="pay-label">服务师傅</text>
+      <text class="pay-value">{{masterName}}</text>
+    </view>
+    <view class="pay-info-row">
+      <text class="pay-label">预约时间</text>
+      <text class="pay-value">{{date}} {{slot}}</text>
+    </view>
+    <view class="pay-divider"></view>
+    <view class="pay-info-row pay-amount-row">
+      <text class="pay-label pay-amount-label">支付金额</text>
+      <text class="price price--huge">¥{{amount}}</text>
+    </view>
+  </view>
+
+  <!-- 支付方式 -->
+  <view class="pay-section">
+    <view class="pay-method">
+      <view class="method-left">
+        <text class="method-icon">💳</text>
+        <view class="method-info">
+          <text class="method-name">微信支付</text>
+          <text class="method-desc">推荐</text>
+        </view>
+      </view>
+      <view class="method-checked">✓</view>
+    </view>
+  </view>
+
+  <!-- 温馨提示 -->
+  <view class="pay-section pay-notice">
+    <text class="notice-title">温馨提示</text>
+    <text class="notice-text">1. 支付后师傅将在15分钟内接单</text>
+    <text class="notice-text">2. 服务开始前30分钟可免费取消</text>
+    <text class="notice-text">3. 如有疑问请联系在线客服</text>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="pay-actions safe-bottom">
+    <button
+      class="btn-primary {{isPaying ? 'btn-primary--disabled' : ''}}"
+      disabled="{{isPaying}}"
+      bindtap="onConfirmPay"
+    >
+      {{isPaying ? '支付中...' : '确认支付 ¥' + amount}}
+    </button>
+    <button class="pay-cancel" bindtap="onPayFailed">暂时不支付</button>
+  </view>
+
+</view>

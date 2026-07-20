@@ -1,0 +1,224 @@
+<!-- pages/booking/booking.wxml -->
+<view class="page-booking">
+
+  <!-- 顶部师傅信息 -->
+  <view class="master-brief">
+    <text class="brief-label">预约师傅</text>
+    <text class="brief-name">{{masterName}}</text>
+    <text class="brief-time">{{date}} {{slot}}</text>
+  </view>
+
+  <!-- 选择服务项目 -->
+  <view class="form-section">
+    <view class="form-section-header">选择服务项目</view>
+    <view class="service-select">
+      <view
+        class="service-option {{selectedService && selectedService.id === item.id ? 'active' : ''}}"
+        wx:for="{{services}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="onSelectService"
+      >
+        <view class="service-option-left">
+          <view class="service-option-icon service-icon--{{item.color}}">{{item.icon}}</view>
+          <view class="service-option-info">
+            <text class="service-option-name">{{item.name}}</text>
+            <text class="service-option-desc">{{item.desc}}</text>
+          </view>
+        </view>
+        <view class="service-option-price">
+          <text class="price">¥{{item.price}}</text>
+          <view class="radio {{selectedService && selectedService.id === item.id ? 'radio-checked' : 'radio-empty'}}"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 预约时间 -->
+  <view class="form-section">
+    <view class="form-section-header">预约时间</view>
+    <view class="time-display">
+      <text class="time-text">{{date}} {{slot}}</text>
+    </view>
+  </view>
+
+  <!-- 服务地址 -->
+  <view class="form-section">
+    <view class="form-section-header">服务地址</view>
+
+    <!-- 地址类型切换 -->
+    <view class="address-tabs">
+      <view
+        class="address-tab {{addressType === 'hospital' ? 'active' : ''}}"
+        data-type="hospital"
+        bindtap="onSwitchAddressType"
+      >
+        <text>🏥 医院</text>
+      </view>
+      <view
+        class="address-tab {{addressType === 'home' ? 'active' : ''}}"
+        data-type="home"
+        bindtap="onSwitchAddressType"
+      >
+        <text>🏠 家庭</text>
+      </view>
+      <view
+        class="address-tab"
+        bindtap="onSelectAddressOnMap"
+      >
+        <text>🗺️ 地图选点</text>
+      </view>
+    </view>
+
+    <!-- 医院地址 -->
+    <block wx:if="{{addressType === 'hospital'}}">
+      <view class="form-field {{errors.address ? 'field-error' : ''}}">
+        <text class="field-label">搜索医院</text>
+        <input
+          class="field-input"
+          placeholder="请输入医院名称"
+          value="{{hospitalKeyword}}"
+          bindinput="onInputHospital"
+          bindfocus="onSearchHospital"
+        />
+      </view>
+      <view class="hospital-suggest" wx:if="{{hospitalSearchResults && hospitalSearchResults.length > 0 && hospitalKeyword && !hospitalName}}">
+        <view
+          class="hospital-item"
+          wx:for="{{hospitalSearchResults}}"
+          wx:key="name"
+          data-name="{{item.name}}"
+          bindtap="onSelectHospital"
+        >
+          <text class="hospital-name">{{item.name}}</text>
+          <text class="hospital-addr">{{item.address}}</text>
+        </view>
+      </view>
+      <view class="form-field {{errors.ward ? 'field-error' : ''}}" wx:if="{{hospitalName}}">
+        <text class="field-label">病房号</text>
+        <input
+          class="field-input"
+          placeholder="请输入院区、楼层和房间号，如同济医院·骨科3F-12"
+          value="{{wardNumber}}"
+          bindinput="onInputWard"
+        />
+      </view>
+      <!-- 错误提示 -->
+      <text class="error-msg" wx:if="{{errors.address}}">{{errors.address}}</text>
+      <text class="error-msg" wx:if="{{errors.ward}}">{{errors.ward}}</text>
+    </block>
+
+    <!-- 家庭地址 -->
+    <block wx:elif="{{addressType === 'home'}}">
+      <view class="form-field {{errors.address ? 'field-error' : ''}}">
+        <text class="field-label">详细地址</text>
+        <input
+          class="field-input"
+          placeholder="请输入省、市、区及详细门牌号"
+          value="{{homeAddress}}"
+          bindinput="onInputHomeAddress"
+        />
+      </view>
+      <text class="error-msg" wx:if="{{errors.address}}">{{errors.address}}</text>
+    </block>
+  </view>
+
+  <!-- 患者情况 -->
+  <view class="form-section">
+    <view class="form-section-header">
+      患者情况
+      <text class="field-required">*</text>
+    </view>
+    <view class="patient-type-grid">
+      <view
+        class="patient-type {{patientType === 'postop' ? 'active' : ''}}"
+        data-type="postop"
+        bindtap="onSelectPatientType"
+      >
+        <text class="patient-type-icon">🛏️</text>
+        <text class="patient-type-label">术后卧床</text>
+      </view>
+      <view
+        class="patient-type {{patientType === 'maternal' ? 'active' : ''}}"
+        data-type="maternal"
+        bindtap="onSelectPatientType"
+      >
+        <text class="patient-type-icon">🤱</text>
+        <text class="patient-type-label">孕产妇</text>
+      </view>
+      <view
+        class="patient-type {{patientType === 'normal' ? 'active' : ''}}"
+        data-type="normal"
+        bindtap="onSelectPatientType"
+      >
+        <text class="patient-type-icon">🙋</text>
+        <text class="patient-type-label">普通</text>
+      </view>
+      <view
+        class="patient-type {{patientType === 'other' ? 'active' : ''}}"
+        data-type="other"
+        bindtap="onSelectPatientType"
+      >
+        <text class="patient-type-icon">📝</text>
+        <text class="patient-type-label">其他</text>
+      </view>
+    </view>
+    <text class="error-msg" wx:if="{{errors.patientType}}">{{errors.patientType}}</text>
+
+    <!-- 备注 -->
+    <view class="form-field" style="margin-top: 20rpx;">
+      <text class="field-label">备注（选填）</text>
+      <textarea
+        class="field-textarea"
+        placeholder="如：患者有颈椎病、洗发水过敏等特殊需求"
+        value="{{patientNote}}"
+        maxlength="200"
+        bindinput="onInputPatientNote"
+      ></textarea>
+      <text class="char-count">{{patientNote.length || 0}}/200</text>
+    </view>
+  </view>
+
+  <!-- 联系方式 -->
+  <view class="form-section">
+    <view class="form-section-header">联系电话</view>
+    <view class="form-field">
+      <text class="field-label">手机号</text>
+      <input class="field-input" value="{{contactPhone}}" disabled="{{true}}" />
+    </view>
+  </view>
+
+  <!-- 价格明细 -->
+  <view class="form-section">
+    <view class="price-detail">
+      <view class="price-row">
+        <text class="price-label">服务费用</text>
+        <text class="price-value">¥{{originalPrice}}</text>
+      </view>
+      <view class="price-row price-row--discount" wx:if="{{discountPrice > 0}}">
+        <text class="price-label">新客优惠</text>
+        <text class="price-value price-value--discount">-¥{{discountPrice}}</text>
+      </view>
+      <view class="price-row price-total">
+        <text class="price-label">实付金额</text>
+        <text class="price price--large">¥{{finalPrice}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="submit-area safe-bottom">
+    <view class="submit-info">
+      <text class="submit-price-label">合计</text>
+      <text class="price price--large">¥{{finalPrice}}</text>
+    </view>
+    <button
+      class="btn-primary {{isSubmitting ? 'btn-primary--disabled' : ''}}"
+      disabled="{{isSubmitting}}"
+      bindtap="onSubmit"
+    >
+      {{isSubmitting ? '提交中...' : '确认支付 ¥' + finalPrice}}
+    </button>
+  </view>
+
+</view>

@@ -1,0 +1,14 @@
+<!-- components/rating-stars/rating-stars.wxml -->
+<view class="stars-container" style="font-size: {{size}}rpx;">
+  <text
+    class="star {{item}} {{interactive ? 'interactive' : ''}}"
+    wx:for="{{stars}}"
+    wx:key="index"
+    data-index="{{index}}"
+    catchtap="{{interactive ? 'onTapStar' : ''}}"
+  >
+    <block wx:if="{{item === 'full'}}">★</block>
+    <block wx:elif="{{item === 'half'}}">★</block>
+    <block wx:else>☆</block>
+  </text>
+</view>

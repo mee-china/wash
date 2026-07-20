@@ -1,0 +1,124 @@
+<!-- pages/index/index.wxml -->
+<view class="page-index">
+
+  <!-- 加载态骨架屏 -->
+  <block wx:if="{{isLoading && !isRefreshing}}">
+    <view class="skeleton-section">
+      <view class="skeleton skeleton-location"></view>
+      <view class="skeleton skeleton-banner"></view>
+      <view class="skeleton skeleton-services">
+        <view class="skeleton-item"></view>
+        <view class="skeleton-item"></view>
+        <view class="skeleton-item"></view>
+        <view class="skeleton-item"></view>
+      </view>
+      <view class="skeleton skeleton-section-title"></view>
+      <view class="skeleton skeleton-card"></view>
+      <view class="skeleton skeleton-card"></view>
+    </view>
+  </block>
+
+  <!-- 内容区域 -->
+  <block wx:else>
+
+    <!-- 定位栏 -->
+    <view class="location-bar">
+      <view class="location-left" bindtap="onTapCity">
+        <text class="city-name">{{currentCity}}</text>
+        <text class="arrow">▼</text>
+        <view class="status-dot {{hasLocationAuth ? 'online' : ''}}"></view>
+        <text class="status-text" wx:if="{{hasLocationAuth}}">可预约</text>
+      </view>
+      <view class="location-right" wx:if="{{!cityUnavailable && onlineMasters > 0}}">
+        <view class="online-dot"></view>
+        <text>附近 {{onlineMasters}} 位师傅在线</text>
+      </view>
+    </view>
+
+    <!-- 城市未开通状态 -->
+    <view class="city-unavailable" wx:if="{{cityUnavailable}}">
+      <view class="unavailable-icon">📍</view>
+      <text class="unavailable-title">该城市暂未开通服务</text>
+      <text class="unavailable-desc">我们正在加速拓展中，敬请期待</text>
+      <button class="btn-subscribe" bindtap="onTapSubscribe">📩 预约提醒</button>
+    </view>
+
+    <!-- Banner 轮播 -->
+    <swiper
+      class="banner-swiper"
+      indicator-dots="{{false}}"
+      autoplay="{{true}}"
+      interval="3000"
+      duration="400"
+      circular="{{true}}"
+      bindchange="onBannerChange"
+    >
+      <swiper-item wx:for="{{banners}}" wx:key="id" data-id="{{item.id}}" bindtap="onTapBanner">
+        <view class="banner-item">
+          <view class="banner-tag">{{item.tag}}</view>
+          <view class="banner-title-row">
+            <text class="banner-title">{{item.title}}</text>
+            <text class="banner-price">{{item.price}}</text>
+          </view>
+          <text class="banner-subtitle">{{item.subtitle}}</text>
+          <view class="banner-indicator">
+            <view wx:for="{{banners}}" wx:key="id" class="banner-dot {{index === currentBanner ? 'active' : ''}}"></view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+
+    <!-- 服务项目 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">服务项目</text>
+        <view class="section-more" bindtap="onTapViewAllMasters">查看全部 ›</view>
+      </view>
+      <view class="service-grid">
+        <view
+          class="service-item"
+          wx:for="{{services}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="onTapService"
+        >
+          <view class="service-icon service-icon--{{item.color}}">{{item.icon}}</view>
+          <text class="service-name">{{item.name}}</text>
+          <text class="service-desc">{{item.desc}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 推荐师傅 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">推荐师傅</text>
+        <view class="section-more" bindtap="onTapViewAllMasters">查看全部 ›</view>
+      </view>
+      <view class="master-list">
+        <master-card
+          wx:for="{{masters}}"
+          wx:key="id"
+          master="{{item}}"
+          bind:tap="onTapMaster"
+          data-id="{{item.id}}"
+        />
+      </view>
+    </view>
+
+    <!-- 快捷预约 FAB -->
+    <view class="fab" bindtap="onTapQuickBook">
+      <text class="fab-icon">🎁</text>
+      <text class="fab-text">新客立减30元 · 立即预约</text>
+    </view>
+
+  </block>
+
+  <!-- 错误态 -->
+  <view class="error-state" wx:if="{{!isLoading && !cityUnavailable && services.length === 0}}">
+    <text class="error-icon">😅</text>
+    <text class="error-text">网络开小差了</text>
+    <button class="btn-retry" bindtap="onTapRetry">点击重试</button>
+  </view>
+
+</view>

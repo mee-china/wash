@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "我想洗头",
+  "usingComponents": {
+    "master-card": "/components/master-card/master-card"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

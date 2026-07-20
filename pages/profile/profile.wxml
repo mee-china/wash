@@ -1,0 +1,88 @@
+<!-- pages/profile/profile.wxml -->
+<view class="page-profile">
+
+  <!-- 用户头部 -->
+  <view class="profile-header">
+    <view class="header-bg"></view>
+    <view class="header-content">
+      <view class="avatar-large">{{userInfo.avatar}}</view>
+      <view class="user-info">
+        <text class="user-name">{{userInfo.nickName}}</text>
+        <text class="user-phone">{{userInfo.phone}}</text>
+        <text class="user-join">加入于 {{userInfo.joinDate}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 省钱 Banner -->
+  <view class="savings-banner">
+    <view class="savings-left">
+      <text class="savings-label">累计节省</text>
+      <text class="savings-amount">¥{{savings}}</text>
+    </view>
+    <view class="savings-right">查看省钱明细 ›</view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="quick-grid">
+    <view
+      class="quick-item"
+      wx:for="{{quickEntries}}"
+      wx:key="label"
+      data-url="{{item.url}}"
+      bindtap="onTapEntry"
+    >
+      <view class="quick-icon-wrap">
+        <view class="quick-icon quick-icon--{{item.color}}">{{item.icon}}</view>
+        <view class="quick-badge" wx:if="{{item.label === '收藏师傅' && favoriteCount > 0}}">{{favoriteCount}}</view>
+      </view>
+      <text class="quick-label">{{item.label}}</text>
+    </view>
+  </view>
+
+  <!-- 我的次卡 -->
+  <view class="card-section">
+    <view class="card-section-header">
+      <text class="card-section-title">我的次卡</text>
+      <text class="card-section-more">查看全部 ›</text>
+    </view>
+    <view class="card-row">
+      <view class="card-item card-item--active">
+        <text class="card-type">3 次卡</text>
+        <text class="card-count">2 <text class="card-total">/3 次</text></text>
+        <text class="card-expiry">有效期至 2026.10.15</text>
+      </view>
+      <view class="card-item card-item--inactive">
+        <text class="card-type">5 次卡</text>
+        <text class="card-count">0 <text class="card-total">/5 次</text></text>
+        <text class="card-buy">去购买 ›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="list-section">
+    <view class="list-item" bindtap="onTapContact">
+      <view class="list-left">
+        <text class="list-icon">💬</text>
+        <text class="list-text">联系客服</text>
+      </view>
+      <text class="list-arrow">在线 ›</text>
+    </view>
+    <view class="list-item" bindtap="onTapFeedback">
+      <view class="list-left">
+        <text class="list-icon">💡</text>
+        <text class="list-text">服务反馈</text>
+      </view>
+      <text class="list-arrow">›</text>
+    </view>
+    <view class="list-item" bindtap="onTapAbout">
+      <view class="list-left">
+        <text class="list-icon">ℹ️</text>
+        <text class="list-text">关于我们</text>
+      </view>
+      <text class="list-arrow">V1.0 ›</text>
+    </view>
+  </view>
+
+</view>

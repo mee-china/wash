@@ -1,0 +1,173 @@
+/* components/master-card/master-card.wxss */
+.master-card {
+  display: flex;
+  background: var(--color-card);
+  border-radius: var(--card-radius);
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: var(--shadow-card);
+  align-items: center;
+}
+
+.master-card:active {
+  transform: scale(0.98);
+}
+
+/* 左侧头像 */
+.card-left {
+  flex-shrink: 0;
+  margin-right: 20rpx;
+}
+
+.avatar-wrap {
+  position: relative;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #fff;
+}
+
+.level-badge {
+  position: absolute;
+  bottom: -4rpx;
+  right: -4rpx;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 3rpx solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-tag);
+  font-weight: 700;
+  color: #fff;
+}
+
+.level--S { background: var(--color-primary); }
+.level--A { background: #8B6B5A; }
+.level--B { background: #A89484; }
+
+/* 中间信息 */
+.card-center {
+  flex: 1;
+  min-width: 0;
+}
+
+.name-row {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  margin-bottom: 8rpx;
+}
+
+.master-name {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.master-tags {
+  display: flex;
+  gap: 6rpx;
+  overflow: hidden;
+}
+
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.rating-score {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.divider {
+  color: var(--color-border);
+}
+
+.order-count, .distance {
+  color: var(--color-text-muted);
+}
+
+.skill-tags {
+  display: flex;
+  gap: 6rpx;
+  margin-top: 8rpx;
+  flex-wrap: wrap;
+}
+
+.skill-tag {
+  font-size: var(--font-size-tag);
+  background: var(--color-primary-bg);
+  color: var(--color-accent);
+  padding: 4rpx 12rpx;
+  border-radius: var(--tag-radius);
+}
+
+/* 右侧价格 */
+.card-right {
+  flex-shrink: 0;
+  text-align: right;
+  margin-left: 16rpx;
+}
+
+.price-area {
+  display: flex;
+  align-items: baseline;
+  gap: 4rpx;
+}
+
+.current-price {
+  font-size: var(--font-size-h2);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.original-price {
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+  margin-right: 6rpx;
+}
+
+.unit {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.first-order-price {
+  display: block;
+  font-size: var(--font-size-tag);
+  color: var(--color-primary);
+  margin-top: 4rpx;
+  font-weight: 500;
+}
+
+.status-tag {
+  display: block;
+  font-size: var(--font-size-tag);
+  margin-top: 4rpx;
+}
+
+.status--free {
+  color: var(--color-success);
+}
+
+.status--busy {
+  color: var(--color-text-muted);
+}

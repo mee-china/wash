@@ -1,0 +1,47 @@
+<!-- components/master-card/master-card.wxml -->
+<view class="master-card" bindtap="onTap">
+  <view class="card-left">
+    <view class="avatar-wrap">
+      <view class="avatar" style="background: linear-gradient(135deg, {{avatarColors[index % 4]}}, {{avatarColors[(index + 1) % 4]}});">
+        <text>{{master.avatar}}</text>
+      </view>
+      <view class="level-badge level--{{master.level}}">{{master.level}}</view>
+    </view>
+  </view>
+
+  <view class="card-center">
+    <view class="name-row">
+      <text class="master-name">{{master.name}}</text>
+      <view class="master-tags">
+        <text class="tag tag--primary" wx:for="{{master.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+      </view>
+    </view>
+
+    <view class="rating-row">
+      <rating-stars rating="{{master.rating}}" />
+      <text class="rating-score">{{master.rating}}</text>
+      <text class="divider">|</text>
+      <text class="order-count">{{master.orderCount}} 单</text>
+      <text class="divider" wx:if="{{showDistance && master.distance}}">|</text>
+      <text class="distance" wx:if="{{showDistance && master.distance}}">{{master.distance}}</text>
+    </view>
+
+    <view class="skill-tags" wx:if="{{master.skillTags && master.skillTags.length > 0}}">
+      <text class="skill-tag" wx:for="{{master.skillTags}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="card-right">
+    <view class="price-area">
+      <text class="current-price">
+        <text class="original-price" wx:if="{{master.originalPrice}}">¥{{master.originalPrice}}</text>
+        ¥{{master.price}}
+      </text>
+      <text class="unit">/次</text>
+    </view>
+    <text class="first-order-price" wx:if="{{master.firstOrderPrice}}">首单 ¥{{master.firstOrderPrice}}</text>
+    <text class="status-tag {{master.todayFull ? 'status--busy' : 'status--free'}}">
+      {{master.todayFull ? '今日约满' : '可预约'}}
+    </text>
+  </view>
+</view>

@@ -1,0 +1,64 @@
+<!-- pages/master-list/master-list.wxml -->
+<view class="page-master-list">
+
+  <!-- 筛选栏 -->
+  <view class="filter-bar">
+    <view
+      class="filter-item {{activeFilter === item.key ? 'active' : ''}}"
+      wx:for="{{filterOptions}}"
+      wx:key="key"
+      data-key="{{item.key}}"
+      bindtap="onFilterChange"
+    >
+      <text>{{item.label}}</text>
+    </view>
+  </view>
+
+  <!-- 服务标签 -->
+  <view class="service-tag-bar" wx:if="{{serviceName}}">
+    <view class="service-tag">
+      <text>{{serviceName}}</text>
+      <text class="tag-close">✕</text>
+    </view>
+  </view>
+
+  <!-- 加载态 -->
+  <block wx:if="{{isLoading}}">
+    <view class="skeleton-list">
+      <view class="skeleton skeleton-master-card"></view>
+      <view class="skeleton skeleton-master-card"></view>
+      <view class="skeleton skeleton-master-card"></view>
+    </view>
+  </block>
+
+  <!-- 空结果 -->
+  <empty-state
+    wx:elif="{{!isLoading && filteredMasters.length === 0}}"
+    icon="🔍"
+    title="未找到匹配的师傅"
+    desc="试试调整筛选条件或换个服务项目"
+    actionText="清除筛选"
+    bindaction="onFilterChange"
+    data-key="comprehensive"
+  />
+
+  <!-- 师傅列表 -->
+  <view class="master-list" wx:else>
+    <view class="master-count">共 {{filteredMasters.length}} 位师傅</view>
+    <master-card
+      wx:for="{{filteredMasters}}"
+      wx:key="id"
+      master="{{item}}"
+      showDistance="{{true}}"
+      bindtap="onTapMaster"
+      data-id="{{item.id}}"
+    />
+  </view>
+
+  <!-- 错误态 -->
+  <view class="error-state" wx:if="{{!isLoading && masters.length === 0 && filteredMasters.length === 0}}">
+    <text class="error-text">加载失败</text>
+    <button class="btn-retry" bindtap="onTapRetry">点击重试</button>
+  </view>
+
+</view>

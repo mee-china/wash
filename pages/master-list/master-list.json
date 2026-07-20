@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "附近师傅",
+  "usingComponents": {
+    "master-card": "/components/master-card/master-card"
+  }
+}
