@@ -1,6 +1,6 @@
 /* pages/index/index.wxss */
 .page-index {
-  padding-bottom: 180rpx; /* FAB + TabBar 空间 */
+  padding-bottom: 120rpx; /* FAB + TabBar 空间 */
   min-height: 100vh;
 }
 
@@ -295,7 +295,7 @@
 /* ===== 快捷预约 FAB ===== */
 .fab {
   position: fixed;
-  bottom: 140rpx;
+  bottom: 110rpx; /* 贴近 Tab 栏上方 */
   left: var(--page-padding);
   right: var(--page-padding);
   height: 88rpx;
