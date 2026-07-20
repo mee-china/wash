@@ -54,7 +54,6 @@
   ],
   "usingComponents": {
     "master-card": "/components/master-card/master-card",
-    "order-card": "/components/order-card/order-card",
     "rating-stars": "/components/rating-stars/rating-stars",
     "empty-state": "/components/empty-state/empty-state"
   },
