@@ -1,6 +1,6 @@
 /* pages/index/index.wxss */
 .page-index {
-  padding-bottom: 120rpx; /* FAB + TabBar 空间 */
+  padding-bottom: 220rpx; /* FAB 高 88rpx + bottom 110rpx + 安全间距 */
   min-height: 100vh;
 }
 
